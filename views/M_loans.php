@@ -3,7 +3,7 @@
     <div class="panel-heading panel-black text-center">
       <h2> Contributions</h2>
       <div class="text-right">
-      <a class="btn btn-primary">Request Loan</a>
+      <a href="?page=Request_loan" class="btn btn-primary">Request Loan</a>
     </div>
 
     </div>

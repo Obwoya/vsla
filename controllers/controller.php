@@ -161,6 +161,26 @@ class Controller {
 		require_once 'views/member.php';
 	}
 
+	public function New_contribution() {
+		$status = $this->model->contribute($error);
+		$logged_in = $this->model;
+		$content = "views/New_contribution.php";
+		require_once 'views/member.php';
+	}
+
+	public function Request_loan() {
+		$status = $this->model->R_loan($error);
+		$logged_in = $this->model;
+		$content = "views/Request_loan.php";
+		require_once 'views/member.php';
+	}
+
+
+public function contribute() {
+
+		$status = $this->model->contribute($error);
+		//require_once 'views/'
+	}
 }
 
 

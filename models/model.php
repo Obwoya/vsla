@@ -98,6 +98,15 @@ public function M_contributions() {
 		return $this->tests->M_loans();
 	}
 
+	public function contribute(&$error) {
+		return $this->tests->contribute($error);
+	}
+
+	public function R_loan(&$error) {
+		return $this->tests->R_loan($error);
+	}
+
+
 
 
 	//end of member actions
@@ -110,9 +119,6 @@ public function M_contributions() {
 		return $this->tests->logout();
 	}
 
-	public function contribute() {
-		return $this->contLoan->contribute();
-	}
 
 	public function loan() {
 		return $this->contLoan->loan();

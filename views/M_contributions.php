@@ -3,7 +3,7 @@
     <div class="panel-heading panel-black text-center">
       <h2> Contributions</h2>
       <div class="text-right">
-      <a class="btn btn-primary">New Contribution</a>
+      <a href="?page=New_contribution" class="btn btn-primary">New Contribution</a>
     </div>
     </div>
   <table class="table table-hover">

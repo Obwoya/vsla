@@ -12,7 +12,7 @@ if ($_SESSION['type']=='admin') {
 }
 
 else if($_SESSION['type']=='member'){
-  header('location: ?page=Mprofile');
+  header('location: ?page=M_contributions');
 } }
 else{
 

@@ -265,6 +265,103 @@ public function M_contributions() {
 
 	}
 
+	public function contribute(&$error){
+		if(empty($_REQUEST['action'])) $status = "Fill the form to contribute";
+
+		else if($_REQUEST['action'] == 'sub') {
+			$error = array();
+			//if(empty($_REQUEST['name'])) $error['name']='empty';
+
+			if (empty($_REQUEST['bankslip'])) $error['bankslip']='empty';
+			else {
+				$sql = "SELECT count(*) as total from contribution where bankslip = '{$_REQUEST['bankslip']}'";
+				$result = $this->database->execute($sql);
+				$total = $result[0]['total'];
+
+				if ($total) $error['bankslip']= 'The Bank Slip you are providing was submitted before'; 
+							}
+
+			if(empty($_REQUEST['amount'])) $error['amount'] = 'empty';
+
+
+
+
+			if (empty($error)) {
+				# code...
+			
+			$id = $this->M_profile($_SESSION['username']);	
+			foreach ($id as $id) {
+						$id = $id['member_id'];
+						# code...
+					}		
+				$bankslip = $_POST['bankslip'];
+				$amount = $_POST['amount'];
+				$date = date('Y-m-d');
+				//$this->set($_REQUEST['username'], $_REQUEST['password']);
+
+
+				$sql = "INSERT into contribution (member_id,bankslip,amount,status,cont_date) values ('$id','$bankslip','$amount','waiting','$date')";
+
+				$this->database->execute($sql);
+
+				$status = "Thank you for contributing.";
+			}
+			else $status = "fail";
+		}
+
+		return $status;
+	}
+
+		public function R_loan(&$error){
+		if(empty($_REQUEST['action'])) $status = "Fill the form to request a loan";
+
+
+		else if($_REQUEST['action'] == 'sub') {
+			$error = array();
+			//if(empty($_REQUEST['name'])) $error['name']='empty';
+
+			/*if (empty($_REQUEST[''])) $error['amount']='empty';
+			else {
+				$sql = "SELECT count(*) as total from contribution where bankslip = '{$_REQUEST['bankslip']}'";
+				$result = $this->database->execute($sql);
+				$total = $result[0]['total'];
+
+				if ($total) $error['bankslip']= 'The Bank Slip you are providing was submitted before'; 
+							}*/
+
+			if(empty($_REQUEST['amount'])) $error['amount'] = 'empty';
+
+
+
+
+			if (empty($error)) {
+				# code...
+			
+			$id = $this->M_profile($_SESSION['username']);	
+			foreach ($id as $id) {
+						$id = $id['member_id'];
+						# code...
+					}		
+				$amount = $_POST['amount'];
+				$payment_date = $_POST['payment_date'];
+				$date = date('Y-m-d');
+				$interest = $_POST['interest'];
+				//$this->set($_REQUEST['username'], $_REQUEST['password']);
+
+
+				$sql = "INSERT into loan (member_id,amount,amount_interest,status,payment_date,request_date) values ('$id','$amount','$interest','waiting','$payment_date','$date')";
+
+				$this->database->execute($sql);
+
+				$status = "Your request has been submitted.";
+			}
+			else $status = "fail";
+		}
+
+		return $status;
+	}
+
+
 }
 
 ?>

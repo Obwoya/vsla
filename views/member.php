@@ -1,6 +1,9 @@
 <?php 
 require_once('header.php');
-
+if (!isset($_SESSION['username'])) {
+	# code...
+	
+}
 ?>
 
 
@@ -51,9 +54,7 @@ require_once('header.php');
 					<!-- /main -->
 				  
 				</div>
-				<div style="padding: 20%">
-				</div>
-
+				
  <?php 
 require_once('footer.php');
 }

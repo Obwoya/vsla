@@ -1,13 +1,17 @@
-<section id="settings">
-        <p>Edit your user settings:</p>
+
+<?php foreach ($profile as $profile) {?>
+<h1> Hello <?php echo $profile['name']; ?> ! </h1>
+
+<section>
+                
+        <p>E-mail Address:<?php echo $profile['email']; ?> </p>        
+        <p>Username: <?php echo $profile['username']; ?></p>
         
-        <p class="setting"><span>E-mail Address <img src="images/edit.png" alt="*Edit*"></span> lolno@gmail.com</p>
+        <p>Names: <?php echo $profile['name']; ?></p>
         
-        <p class="setting"><span>Language <img src="images/edit.png" alt="*Edit*"></span> English(US)</p>
+        <p>Gender: <?php echo $profile['gender']; ?></p>
+         <p>Birth Date: <?php echo $profile['bdate']; ?></p>
+          <p>Telephone: <?php echo $profile['phone']; ?></p>
         
-        <p class="setting"><span>Profile Status <img src="images/edit.png" alt="*Edit*"></span> Public</p>
-        
-        <p class="setting"><span>Update Frequency <img src="images/edit.png" alt="*Edit*"></span> Weekly</p>
-        
-        <p class="setting"><span>Connected Accounts <img src="images/edit.png" alt="*Edit*"></span> None</p>
-      </section>
+        <p>Address: <?php echo $profile['address']; ?></p>
+      </section><?php } ?>

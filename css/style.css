@@ -151,7 +151,6 @@ hr{border-top: 1px solid #9C9C9C}
 
 /**************** footer **************/
 .footer {
-	padding-top: 2%;
 	position: relative;
   right: 0;
 	left: 0;
@@ -294,6 +293,7 @@ hr {
    color: black;
    padding-left:0;
    padding-right:0;
+   height: 600px;
 }
 #main .img-circle {
    margin-top:18px;
@@ -305,6 +305,7 @@ hr {
     padding:0px;
 	padding-top:15px;
 	background-color: rgb(13,6,6) !important;
+  height: 600px;
 }
 
 #sidebar, #sidebar a, #sidebar-footer a {

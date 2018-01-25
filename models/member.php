@@ -94,9 +94,9 @@ class Member {
 		/*if(empty($password)) $password = $_REQUEST['password'];*/
 		$password = isset($_POST['password']) ? $_POST['password'] : $password;
 
-		$sqlM = "SELECT count(*) as total from member where username='$username' and password='$password' and type='member' and status='accepted'";
+		$sqlM = "SELECT count(*) as total from member where username='$username' and password='$password' and status='member'";
 
-		$sqlS = "SELECT count(*) as total from member where username='$username' and password='$password' and type='staff'";
+		$sqlS = "SELECT count(*) as total from member where username='$username' and password='$password' and status='staff'";
 
 		$sqlA = "SELECT count(*) as total from admin where username='$username' and password='$password'";
 
@@ -151,11 +151,61 @@ class Member {
 	}
 
 	public function M_list() {
-		$sql = "SELECT * FROM member";
+		$sql = "SELECT * FROM member where status = 'member' or status = 'waiting'";
 
 		$result = $this->database->execute($sql);
 		return $result;
 
+	}
+
+	public function A_staff() {
+		$sql = "SELECT * FROM member where status = 'staff'";
+		$result = $this->database->execute($sql);
+
+		return $result;
+	}
+
+	//admin remove member
+	public function A_RMember($username) {
+		$sql = "DELETE FROM member where username = '$username'";
+		$result = $this->database->execute($sql);
+		header('location: ?page=members');
+	}
+
+	//admin update member status to member
+	public function A_AMember($username) {
+		$sql = "UPDATE member set status = 'member' where username = '$username'";
+		$result = $this->database->execute($sql);
+		header('location: ?page=members');
+
+	}
+
+	//admin promote member to staff
+	public function A_PMember($username) {
+		$sql = "UPDATE member set status = 'staff' where username = '$username'";
+		$result = $this->database->execute($sql);
+		header('location: ?page=members');
+	}
+
+	//admin drop staff promotion
+	public function A_DMember($username) {
+		$sql = "UPDATE member set status = 'member' where username = '$username'";
+		$result = $this->database->execute($sql);
+	header('location: ?page=members');
+	}
+
+	public function A_profile($username) {
+		$sql = "SELECT * FROM admin where username = '$username'";
+
+		$result = $this->database->execute($sql);
+		return $result;
+	}
+
+	public function M_profile($username) {
+		$sql = "SELECT * FROM member where username = '$username'";
+
+		$result = $this->database->execute($sql);
+		return $result;
 	}
 }
 

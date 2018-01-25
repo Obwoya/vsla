@@ -14,23 +14,24 @@
 </head>
   <body class="hm-body">
     <!-- header section -->
-     <?php
-
-if ($logged_in==false) {
-  # code...
-?>
-    <section class="header-section">
+        <section class="header-section">
       <div class="container">
         <div class="row">
           <!-- logo -->
           <div class="col-sm-3 col-sm-offset-1 col-xs-12">
             
-              <a href="?controller=account&action=index">test</a>
+              <a href="?controller=account&action=index"><h1 style="color: white;">VSLA</h1></a>
 
           </div>
           <!-- logo -->
           <!-- log in -->
           <div class="col-sm-7 col-sm-offset-1 col-xs-12">
+             <?php
+
+if ($logged_in==false) {
+  # code...
+?>
+
             <div class="login">
               <!-- ================ -->
              
@@ -54,12 +55,14 @@ if ($logged_in==false) {
 
               <!-- ============= -->
             </div>
+<?php }
+
+              else { }?>
+
           </div>
           <!-- log in -->
         </div>
       </div>
-    </section><?php }
-
-              else { }?>
+    </section>
     <section>
       <div class="container-fluid">

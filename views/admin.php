@@ -13,9 +13,9 @@ require_once('header.php');
 					  
 											   
 					<ul class="nav">
-							<li><a href="#featured">Profile</a></li>
+							<li><a href="?page=Aprofile">Profile</a></li>
 							<li><a href="?page=members">Members</a></li>
-							<li><a href="?page=Astaff">Staff</a></li>
+							<li><a href="?page=A_staff">Staff</a></li>
 							<li><a href="?page=Aloans">Loans</a></li>
 							<li><a href="?page=Acontributions">Contributions</a></li>
 
@@ -54,8 +54,7 @@ require_once('header.php');
 					<!-- /main -->
 				  
 				</div>
-				<div style="padding: 10%">
-				</div>
+				
 
 
  <?php 

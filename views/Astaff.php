@@ -19,7 +19,7 @@
 
  
 <?php
-        foreach ($tests as $data) {
+        foreach ($staff as $data) {
 
       ?>
       <tr>
@@ -31,7 +31,7 @@
         <td><?php echo $data['gender'];?></td>
         <td><?php echo $data['email'];?></td>
          <td><?php echo $data['status'];?></td>
-        <td><?php if($data['status']!='member') {?><a href="?page=A_AMember&username=<?php echo $data['username']; ?>" class="btn btn-primary">Accept</a><?php } else {?><a href="?page=A_RMember&username=<?php echo $data['username']; ?>" class="btn btn-danger">Remove</a><a href="?page=A_PMember&username=<?php echo $data['username'];?>" class="btn btn-primary">Promote</a></td><?php } ?>
+        <td><a href="?page=A_DMember&username=<?php echo $data['username'];?>" class="btn btn-danger">Drop</a></td>
       </tr><?php } ?>
     </tbody>
   </table>

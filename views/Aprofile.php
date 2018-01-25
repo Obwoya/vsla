@@ -1,15 +1,11 @@
-<h1> Hello Admin</h1>
 
-<section id="settings">
-        <p>Edit your user settings:</p>
+<?php foreach ($profile as $profile) {?>
+<h1> Hello <?php echo $profile['name']; ?> ! </h1>
+
+<section>
+                
+        <p>Name: <?php echo $profile['name']; ?> </p>
         
-        <p class="setting"><span>E-mail Address <img src="images/edit.png" alt="*Edit*"></span> lolno@gmail.com</p>
+        <p>Username: <?php echo $profile['username']; ?></p>
         
-        <p class="setting"><span>Language <img src="images/edit.png" alt="*Edit*"></span> English(US)</p>
-        
-        <p class="setting"><span>Profile Status <img src="images/edit.png" alt="*Edit*"></span> Public</p>
-        
-        <p class="setting"><span>Update Frequency <img src="images/edit.png" alt="*Edit*"></span> Weekly</p>
-        
-        <p class="setting"><span>Connected Accounts <img src="images/edit.png" alt="*Edit*"></span> None</p>
-      </section>
+            </section><?php } ?>

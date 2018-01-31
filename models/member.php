@@ -124,6 +124,7 @@ class Member {
 			$_SESSION['username'] = $username;
 			$_SESSION['password'] = $password;
 			$_SESSION['type'] = 'staff';
+			header('location: ?page=Pstaff');
 					}
 
 		else if ($totalA==1) {
@@ -201,12 +202,69 @@ class Member {
 		return $result;
 	}
 
-	public function M_profile($username) {
+	
+
+
+	// staff
+	public function Pstaff($username) {
 		$sql = "SELECT * FROM member where username = '$username'";
 
 		$result = $this->database->execute($sql);
 		return $result;
 	}
+
+	public function S_members() {
+		$sql = "SELECT * FROM member where status = 'member'";
+
+		$result = $this->database->execute($sql);
+		return $result;
+
+	}
+
+
+	public function S_contributions() {
+		$sql = "SELECT * FROM member where status = 'member'";
+
+		$result = $this->database->execute($sql);
+		return $result;
+
+	}
+
+		public function S_loans() {
+		$sql = "SELECT * FROM member where status = 'member'";
+
+		$result = $this->database->execute($sql);
+		return $result;
+
+	}
+	// end of staff actions
+	// 
+	// 
+	// -- start of member actions
+
+public function M_profile($username) {
+		$sql = "SELECT * FROM member where username = '$username'";
+
+		$result = $this->database->execute($sql);
+		return $result;
+	}
+
+public function M_contributions() {
+		$sql = "SELECT * FROM member where status = 'member'";
+
+		$result = $this->database->execute($sql);
+		return $result;
+
+	}
+
+		public function M_loans() {
+		$sql = "SELECT * FROM member where status = 'member'";
+
+		$result = $this->database->execute($sql);
+		return $result;
+
+	}
+
 }
 
 ?>

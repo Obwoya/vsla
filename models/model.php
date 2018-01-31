@@ -39,12 +39,10 @@ class Model {
 		return $this->tests->A_profile($username);
 	}
 
-	public function M_profile(&$username) {
-		return $this->tests->M_profile($username);
-	}
+	
 
 
-	//start of actions
+	//start of admin actions
 	
 	public function A_RMember(&$username) {
 		return $this->tests->A_RMember($username);
@@ -63,6 +61,46 @@ class Model {
 	}
 
 	//=== end of actions
+	//
+	//
+	//----start of staff actions
+	//
+	public function Pstaff(&$username) {
+		return $this->tests->Pstaff($username);
+	}
+
+	public function S_members() {
+		return $this->tests->S_members();
+	}
+
+	public function S_contributions() {
+		return $this->tests->S_contributions();
+	}
+
+	public function S_loans() {
+		return $this->tests->S_loans();
+	}
+
+	//end of staff actions
+	//
+	//
+/// start of member actions
+/// 
+public function M_profile(&$username) {
+		return $this->tests->M_profile($username);
+	}
+
+public function M_contributions() {
+		return $this->tests->M_contributions();
+	}
+
+	public function M_loans() {
+		return $this->tests->M_loans();
+	}
+
+
+
+	//end of member actions
 
 	public function logged_in() {
 		return $this->member->logged_in();

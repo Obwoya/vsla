@@ -1,4 +1,5 @@
 <?php 
+
 require_once('header.php');
 
 ?>
@@ -11,11 +12,12 @@ require_once('header.php');
 					<div class="column col-sm-2 col-xs-1" id="sidebar">
 					  
 											   
-						<ul class="nav">
-							<li><a href="?page=Mprofile">Profile</a></li>
-							
-							<li><a href="?page=M_contributions">Contributions</a></li>
-							<li><a href="?page=M_loans">Loans</a></li>
+					<ul class="nav">
+							<li><a href="?page=Aprofile">Profile</a></li>
+							<li><a href="?page=S_members">Members</a></li>
+							<li><a href="?page=S_loans">Loans</a></li>
+							<li><a href="?page=S_contributions">Contributions</a></li>
+
 							<li><a href="?page=logout">Logout</a></li>
 						</ul>
 					  
@@ -35,7 +37,7 @@ require_once('header.php');
 							<div class="full col-sm-9">
 							  
 								<!-- content -->
-					<?php if ($_SESSION['type']=='member') {
+					<?php if ($_SESSION['type']=='staff') {
 			# code...
 		
 					require $content; ?>                      
@@ -51,8 +53,8 @@ require_once('header.php');
 					<!-- /main -->
 				  
 				</div>
-				<div style="padding: 20%">
-				</div>
+				
+
 
  <?php 
 require_once('footer.php');

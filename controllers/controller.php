@@ -30,16 +30,7 @@ class Controller {
 		$status = $this->model->logout();
 	}
 
-	public function Mprofile() {
-		$logged_in = $this->model;
-			if (isset($_SESSION['username'])) {
-			# code...
-			$username = $_SESSION['username'];
-		$profile = $this->model->M_profile($username);
-		}
-		$content = "views/Mprofile.php";
-		require_once 'views/member.php';
-	}
+	
 
 	public function A_staff() {
 		$logged_in = $this->model;
@@ -107,6 +98,69 @@ class Controller {
 		$content = "views/M_list.php";
 		require_once 'views/admin.php';
 	}
+
+
+	// staff
+	public function Pstaff() {
+		$logged_in = $this->model;
+		if (isset($_SESSION['username'])) {
+			# code...
+			$username = $_SESSION['username'];
+		$profile = $this->model->Pstaff($username);
+		}
+		$content = "views/Pstaff.php";
+		require_once 'views/staff.php';
+	}
+
+	public function S_members() {
+		$logged_in = $this->model;
+		$tests = $this->model->S_members();
+		$content = "views/S_members.php";
+		require_once 'views/staff.php';
+	}
+
+	public function S_contributions() {
+		$logged_in = $this->model;
+		$tests = $this->model->S_contributions();
+		$content = "views/S_contributions.php";
+		require_once 'views/staff.php';
+	}
+
+	public function S_loans() {
+		$logged_in = $this->model;
+		$tests = $this->model->S_loans();
+		$content = "views/S_loans.php";
+		require_once 'views/staff.php';
+	}
+
+
+	//member
+	//
+	public function Mprofile() {
+		$logged_in = $this->model;
+			if (isset($_SESSION['username'])) {
+			# code...
+			$username = $_SESSION['username'];
+		$profile = $this->model->M_profile($username);
+		}
+		$content = "views/Mprofile.php";
+		require_once 'views/member.php';
+	}
+
+	public function M_contributions() {
+		$logged_in = $this->model;
+		$tests = $this->model->M_contributions();
+		$content = "views/M_contributions.php";
+		require_once 'views/member.php';
+	}
+
+	public function M_loans() {
+		$logged_in = $this->model;
+		$tests = $this->model->M_loans();
+		$content = "views/M_loans.php";
+		require_once 'views/member.php';
+	}
+
 }
 
 

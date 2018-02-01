@@ -5,15 +5,13 @@
     </div>
   <table class="table table-hover">
     <thead>
-      <th>Names</th>
-      <th>Username</th>
-      <th>Birth Date</th>
-      <th>Address</th>
-      <th>Contact</th>
-      <th>Gender</th>
-      <th>Email</th>
+      <th>Member</th>
+      <th>Amount</th>
+      <th>Bank Slip</th>
+      <th>Contribution Date</th>
       <th>Status</th>
-     <!-- <th>Action</th>-->
+     <?php  if(isset($data) and $data['status']=='waiting') {?> <th>Actions</th><?php } ?>
+           <!-- <th>Action</th>-->
     </thead>
     <tbody>
 
@@ -23,16 +21,15 @@
 
       ?>
       <tr>
-        <td><?php echo $data['name'];?></td>
-        <td><?php echo $data['username'];?></td>
-        <td><?php echo $data['bdate'];?></td>
-        <td><?php echo $data['address'];?></td>
-        <td><?php echo $data['phone'];?></td>
-        <td><?php echo $data['gender'];?></td>
-        <td><?php echo $data['email'];?></td>
-         <td><?php echo $data['status'];?></td>
-        <!--<td><?php if($data['status']!='member') {?><a href="?page=A_AMember&username=<?php echo $data['username']; ?>" class="btn btn-primary">Accept</a><?php } else {?><a href="?page=A_RMember&username=<?php echo $data['username']; ?>" class="btn btn-danger">Remove</a><a href="?page=A_PMember&username=<?php echo $data['username'];?>" class="btn btn-primary">Promote</a></td>--><?php } ?>
-      </tr><?php } ?>
+        <td></td>
+        <td><?php echo $data['amount'];?></td>
+        <td><?php echo $data['bankslip'];?></td>
+        <td><?php echo $data['cont_date'];?></td>
+        <td><?php echo $data['status'];?></td>
+        <td><?php if($data['status']=='waiting'){?>
+          <a class="btn btn-primary" href="?page=S_approve&id=<?php echo $data['contribution_id'];?>">Approve</a><a class="btn btn-danger" href="?page=S_Cignore&id=<?php echo $data['contribution_id'];?>">Ignore</a><?php } ?>
+                <?php } ?></td>
+      </tr>
     </tbody>
   </table>
   </div>

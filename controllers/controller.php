@@ -76,8 +76,23 @@ class Controller {
 			$username = $_GET['username'];
 			$action = $this->model->A_DMember($username);
 		}
-
 	}
+
+	public function A_contributions() {
+		$logged_in = $this->model;
+		$tests = $this->model->S_contributions();
+		$content = "views/S_contributions.php";
+		require_once 'views/admin.php';
+	}
+
+	public function A_loans() {
+		$logged_in = $this->model;
+		$tests = $this->model->S_loans();
+		$content = "views/S_loans.php";
+		require_once 'views/admin.php';
+	}
+
+	
 
 	//=== end of actions
 
@@ -132,6 +147,47 @@ class Controller {
 		$content = "views/S_loans.php";
 		require_once 'views/staff.php';
 	}
+
+		public function S_Laccept(&$id) {
+		$logged_in = $this->model;
+		if (isset($_GET['id'])) {
+			# code...
+			$id = $_GET['id'];
+			$action = $this->model->S_Laccept($id);
+		}
+
+	}
+
+	public function S_Lignore(&$id) {
+		$logged_in = $this->model;
+		if (isset($_GET['id'])) {
+			# code...
+			$id = $_GET['id'];
+			$action = $this->model->S_Lignore($id);
+		}
+
+	}
+
+	public function S_approve(&$id) {
+		$logged_in = $this->model;
+		if (isset($_GET['id'])) {
+			# code...
+			$id = $_GET['id'];
+			$action = $this->model->S_approve($id);
+		}
+
+	}
+
+	public function S_Cignore(&$id) {
+		$logged_in = $this->model;
+		if (isset($_GET['id'])) {
+			# code...
+			$id = $_GET['id'];
+			$action = $this->model->S_Cignore($id);
+		}
+
+	}
+
 
 
 	//member

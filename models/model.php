@@ -81,6 +81,23 @@ class Model {
 		return $this->tests->S_loans();
 	}
 
+	public function S_Laccept(&$id) {
+		return $this->tests->S_Laccept($id);
+	}
+
+	public function S_Lignore(&$id) {
+		return $this->tests->S_Lignore($id);
+	}
+
+	public function S_approve(&$id) {
+		return $this->tests->S_approve($id);
+	}
+
+	public function S_Cignore(&$id) {
+		return $this->tests->S_Cignore($id);
+	}
+
+
 	//end of staff actions
 	//
 	//

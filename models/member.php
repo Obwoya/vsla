@@ -223,7 +223,7 @@ class Member {
 
 
 	public function S_contributions() {
-		$sql = "SELECT * FROM member where status = 'member'";
+		$sql = "SELECT * FROM contribution";
 
 		$result = $this->database->execute($sql);
 		return $result;
@@ -231,7 +231,7 @@ class Member {
 	}
 
 		public function S_loans() {
-		$sql = "SELECT * FROM member where status = 'member'";
+		$sql = "SELECT * FROM loan";
 
 		$result = $this->database->execute($sql);
 		return $result;
@@ -250,15 +250,30 @@ public function M_profile($username) {
 	}
 
 public function M_contributions() {
-		$sql = "SELECT * FROM member where status = 'member'";
+	
+		//$sql = "SELECT * FROM contribution where username = '$username'";
+	if (isset($_SESSION['username'])) {
+		# code...
+		$username = $_SESSION['username'];
+	}
+		$sql = "SELECT c.amount, c.bankslip, c.cont_date, c.status from contribution as c RIGHT JOIN member on member.username = '$username'";
 
 		$result = $this->database->execute($sql);
 		return $result;
 
+		/*SELECT Orders.OrderID, Employees.LastName, Employees.FirstName
+FROM Orders
+RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+ORDER BY Orders.OrderID;*/
+
 	}
 
 		public function M_loans() {
-		$sql = "SELECT * FROM member where status = 'member'";
+			if (isset($_SESSION['username'])) {
+		# code...
+		$username = $_SESSION['username'];
+	}
+		$sql = "SELECT l.amount, l.amount_interest, l.payment_date, l.request_date, l.status from loan as l RIGHT JOIN member on member.username = '$username'";
 
 		$result = $this->database->execute($sql);
 		return $result;
@@ -361,6 +376,28 @@ public function M_contributions() {
 		return $status;
 	}
 
+	public function S_Laccept($id) {
+		$sql = "UPDATE loan set status = 'accepted' where loan_id = '$id'";
+		$result = $this->database->execute($sql);
+	header('location: ?page=S_loans');
+	}
+public function S_Lignore($id) {
+		$sql ="DELETE FROM loan where loan_id = '$id'";
+		$result = $this->database->execute($sql);
+	header('location: ?page=S_loans');
+	}
+
+
+	public function S_approve($id) {
+		$sql = "UPDATE contribution set status = 'Approved' where contribution_id = '$id'";
+		$result = $this->database->execute($sql);
+	header('location: ?page=S_contributions');
+	}
+public function S_Cignore($id) {
+		$sql ="DELETE FROM contribution where contribution_id = '$id'";
+		$result = $this->database->execute($sql);
+	header('location: ?page=S_contributions');
+	}
 
 }
 

@@ -16,8 +16,8 @@ require_once('header.php');
 							<li><a href="?page=Aprofile">Profile</a></li>
 							<li><a href="?page=members">Members</a></li>
 							<li><a href="?page=A_staff">Staff</a></li>
-							<li><a href="?page=Aloans">Loans</a></li>
-							<li><a href="?page=Acontributions">Contributions</a></li>
+							<li><a href="?page=A_loans">Loans</a></li>
+							<li><a href="?page=A_contributions">Contributions</a></li>
 
 							<li><a href="?page=logout">Logout</a></li>
 						</ul>

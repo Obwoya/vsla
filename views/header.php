@@ -13,6 +13,10 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
   <body class="hm-body">
+
+    <?php 
+    define('interest', 12)
+    ?>
     <!-- header section -->
         <section class="header-section">
       <div class="container">

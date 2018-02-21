@@ -21,7 +21,7 @@
 
       ?>
       <tr>
-        <td></td>
+        <td><?php echo $data['name'];?></td>
         <td><?php echo $data['amount'];?></td>
         <td><?php echo $data['bankslip'];?></td>
         <td><?php echo $data['cont_date'];?></td>

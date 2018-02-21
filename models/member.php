@@ -240,7 +240,7 @@ class Member {
 
 
 	public function S_contributions() {
-		$sql = "SELECT * FROM contribution";
+		$sql = "SELECT contribution.*, member.name FROM contribution inner join member on member.member_id = contribution.member_id";
 
 		$result = $this->database->execute($sql);
 		return $result;
@@ -248,7 +248,7 @@ class Member {
 
 
 		public function S_loans() {
-		$sql = "SELECT * FROM loan";
+		$sql = "SELECT loan.*, member.name FROM loan inner join member on member.member_id = loan.member_id";
 
 		$result = $this->database->execute($sql);
 		return $result;
@@ -256,8 +256,9 @@ class Member {
 	}
 
 	public function S_lpayment() {
-		$sql = "SELECT * FROM ploan";
+		$sql = "SELECT ploan.*, member.name FROM ploan inner join member on member.member_id = ploan.member_id";
 		$result = $this->database->execute($sql);
+		return $result;
 	}
 	// end of staff actions
 	// 
@@ -278,7 +279,7 @@ public function M_contributions() {
 		# code...
 		$username = $_SESSION['username'];
 	}
-		$sql = "SELECT c.amount, c.bankslip, c.cont_date, c.status from contribution as c RIGHT JOIN member on member.username = '$username'";
+		$sql = "SELECT c.amount, c.bankslip, c.cont_date, c.status from contribution as c RIGHT JOIN member on member.member_id = c.member_id where member.username = '$username'";
 
 		$result = $this->database->execute($sql);
 		return $result;
@@ -295,7 +296,7 @@ ORDER BY Orders.OrderID;*/
 		# code...
 		$username = $_SESSION['username'];
 	}
-		$sql = "SELECT l.amount, l.amount_interest, l.payment_date, l.request_date, l.status from loan as l RIGHT JOIN member on member.username = '$username'";
+		$sql = "SELECT l.amount, l.amount_interest, l.payment_date, l.request_date, l.status from loan as l RIGHT JOIN member on member.member_id = l.member_id where member.username = '$username'";
 
 		$result = $this->database->execute($sql);
 		return $result;
@@ -308,7 +309,7 @@ ORDER BY Orders.OrderID;*/
 		# code...
 		$username = $_SESSION['username'];
 	}
-		$sql = "SELECT l.bankslip, l.amount, l.rem_amount, l.payment_date, l.status from ploan as l RIGHT JOIN member on member.username = '$username'";
+		$sql = "SELECT l.bankslip, l.amount, l.rem_amount, l.payment_date, l.status from ploan as l RIGHT JOIN member on member.member_id = l.member_id where member.username = '$username'";
 
 		$result = $this->database->execute($sql);
 		return $result;
@@ -386,20 +387,48 @@ public function ploan(&$error){
 			if (empty($error)) {
 				# code...
 			$id = $this->M_profile($_SESSION['username']);	
-			$sql1 = "SELECT * FROM loan where member_id = $id";
-			$result1 = $this->database->execute($sql1);
-			foreach ($amount as $amount) {
-				# code...
-				$rem_amount = $amount['amount'];
-			}
-			
 			foreach ($id as $id) {
 						$id = $id['member_id'];
 						# code...
-					}		
+					}
+
+
+			$sqlP = "SELECT * FROM ploan where member_id = $id";
+			$resultP = $this->database->execute($sqlP);
+
+			if($resultP == true){
+				foreach ($resultP as $result) {
+					$amount = $result['amount'];
+					$rem_amount = $result['rem_amount'];
+				}
+				$amount=$amount+$_POST['amount'];
+					# code...
+					$rem_amount =$rem_amount-$_POST['amount'];
+				$bankslip = $_POST['bankslip'];
+				$date = date('Y-m-d');
+
+				$sql = "INSERT into ploan (member_id,bankslip,amount,rem_amount,status,payment_date) values ('$id','$bankslip','$amount','$rem_amount','waiting','$date')";
+
+				$this->database->execute($sql);
+
+				$status = "Thank you for Paying.";
+
+			}
+
+			else if ($resultP == false){
+			$sql1 = "SELECT * FROM loan where member_id = $id";
+			$result1 = $this->database->execute($sql1);
+
+			foreach ($result1 as $amount) {
+				# code...
+				$rem_amount = $amount['amount'];
+			}
+
+					
 				$bankslip = $_POST['bankslip'];
 				$amount = $_POST['amount'];
 				$date = date('Y-m-d');
+				$rem_amount = $rem_amount - $amount;
 				//$this->set($_REQUEST['username'], $_REQUEST['password']);
 
 
@@ -409,6 +438,7 @@ public function ploan(&$error){
 
 				$status = "Thank you for Paying.";
 			}
+		}
 			else $status = "fail";
 		}
 
@@ -445,18 +475,25 @@ public function ploan(&$error){
 						$id = $id['member_id'];
 						# code...
 					}		
-				$amount = $_POST['amount'];
+				$amount = $_POST['amount'] + ($_POST['amount'] * 12)/100;
 				$payment_date = $_POST['payment_date'];
 				$date = date('Y-m-d');
 				$interest = $_POST['interest'];
 				//$this->set($_REQUEST['username'], $_REQUEST['password']);
 
-
+				$sql1 = "select count(*) as total from loan where member_id = $id and status = 'waiting' or status = 'accepted'";
+				$result1 = $this->database->execute($sql1);
+				$total = $result1[0]['total'];
+				if(!$total){
 				$sql = "INSERT into loan (member_id,amount,amount_interest,status,payment_date,request_date) values ('$id','$amount','$interest','waiting','$payment_date','$date')";
 
 				$this->database->execute($sql);
 
 				$status = "Your request has been submitted.";
+			}
+			else {
+				$status = "You still have a loan to pay";
+			}
 			}
 			else $status = "fail";
 		}
@@ -473,6 +510,17 @@ public function S_Lignore($id) {
 		$sql ="DELETE FROM loan where loan_id = '$id'";
 		$result = $this->database->execute($sql);
 	header('location: ?page=S_loans');
+	}
+
+	public function S_PLaccept($id) {
+		$sql = "UPDATE ploan set status = 'accepted' where loan_id = '$id'";
+		$result = $this->database->execute($sql);
+	header('location: ?page=S_lpayment');
+	}
+public function S_PLignore($id) {
+		$sql ="DELETE FROM ploan where loan_id = '$id'";
+		$result = $this->database->execute($sql);
+	header('location: ?page=S_lpayment');
 	}
 
 

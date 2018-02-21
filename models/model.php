@@ -81,12 +81,24 @@ class Model {
 		return $this->tests->S_loans();
 	}
 
+	public function S_lpayment() {
+		return $this->tests->S_lpayment();
+	}
+
 	public function S_Laccept(&$id) {
 		return $this->tests->S_Laccept($id);
 	}
 
 	public function S_Lignore(&$id) {
 		return $this->tests->S_Lignore($id);
+	}
+
+	public function S_PLaccept(&$id) {
+		return $this->tests->S_PLaccept($id);
+	}
+
+	public function S_PLignore(&$id) {
+		return $this->tests->S_PLignore($id);
 	}
 
 	public function S_approve(&$id) {

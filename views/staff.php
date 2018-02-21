@@ -13,10 +13,10 @@ require_once('header.php');
 					  
 											   
 					<ul class="nav">
-							<li><a href="?page=Aprofile">Profile</a></li>
+							<li><a href="?page=Pstaff">Profile</a></li>
 							<li><a href="?page=S_members">Members</a></li>
 							<li><a href="?page=S_loans">Loans</a></li>
-							<ul style="padding-left: 5px;"><li><a href="?page=S_loans">Loans Payment</a></li>
+							<ul style="padding-left: 5px;"><li><a href="?page=S_lpayment">Loans Payment</a></li>
 								<li><a href="?page=S_loans">Loans Report</a></li>
 								<li><a href="?page=S_loans">Payed Loans Report</a></li>
 

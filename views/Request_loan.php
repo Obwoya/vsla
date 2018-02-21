@@ -3,7 +3,7 @@
  
         <div class="col-sm-offset-3 col-sm-7">
           <div class="col-sm-10" style="padding-top: 10%;">
-            <h2 class="text-center">Contribute</h2>
+            <h2 class="text-center">Request Loan</h2>
             <p class="text-center text-muted"><?php if($status != 'fail')echo $status; ?></p><br><br>
 
             <form role="form" method="post">
@@ -22,8 +22,8 @@
                 </div>
                 
                <div class="text-center">
-                <p style="color:red;">Remember Interest on Loan is 12% ! </p>
-                <input type="hidden" name="interest" value="12">
+                <p style="color:red;">Remember Interest on Loan is <?php echo interest; ?>% !</p>
+                <input type="hidden" name="interest" value="<?php echo interest; ?>">
                </div>
 	 <div class="text-right">
                 	<input type="hidden" name="action" value="sub">

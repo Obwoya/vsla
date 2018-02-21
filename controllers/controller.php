@@ -153,6 +153,13 @@ class Controller {
 		require_once 'views/staff.php';
 	}
 
+	public function S_lpayment() {
+		$logged_in = $this->model;
+		$tests = $this->model->S_lpayment();
+		$content = "views/S_lpayment.php";
+		require_once 'views/staff.php';
+	}
+
 		public function S_Laccept(&$id) {
 		$logged_in = $this->model;
 		if (isset($_GET['id'])) {
@@ -169,6 +176,27 @@ class Controller {
 			# code...
 			$id = $_GET['id'];
 			$action = $this->model->S_Lignore($id);
+		}
+
+	}
+
+
+		public function S_PLaccept(&$id) {
+		$logged_in = $this->model;
+		if (isset($_GET['id'])) {
+			# code...
+			$id = $_GET['id'];
+			$action = $this->model->S_PLaccept($id);
+		}
+
+	}
+
+	public function S_PLignore(&$id) {
+		$logged_in = $this->model;
+		if (isset($_GET['id'])) {
+			# code...
+			$id = $_GET['id'];
+			$action = $this->model->S_PLignore($id);
 		}
 
 	}

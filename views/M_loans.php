@@ -1,7 +1,7 @@
 <div> 
   <div class="panel">
     <div class="panel-heading panel-black text-center">
-      <h2> Contributions</h2>
+      <h2> Loans</h2>
       <div class="text-right">
       <a href="?page=Request_loan" class="btn btn-primary">Request Loan</a>
     </div>

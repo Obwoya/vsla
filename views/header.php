@@ -18,46 +18,21 @@
       <div class="container">
         <div class="row">
           <!-- logo -->
-          <div class="col-sm-3 col-sm-offset-1 col-xs-12">
+          <div class="col-sm-12 col-xs-12">
             
-              <a href="?controller=account&action=index"><h1 style="color: white;">VSLA</h1></a>
+              <a class="col-md-6" href="?controller=account&action=index"><h1 style="color: white; font-size: 16px">VILLAGE SAVINGS AND LOANS ASSOCIATION (VSLA)</h1></a>
+              <?php if(!isset($_SESSION['type'])){ ?>
+<div class="text-right" style="font-size: 20px; margin-top: 10px;">
+<a style="color: white; padding-right: 20px" href="?page=signup">Signup</a>
+<a style="color: white;" href="?controller=account&action=index">Login</a>
+</div>
+<?php } else {} ?>
 
           </div>
           <!-- logo -->
           <!-- log in -->
           <div class="col-sm-7 col-sm-offset-1 col-xs-12">
-             <?php
 
-if ($logged_in==false) {
-  # code...
-?>
-
-            <div class="login">
-              <!-- ================ -->
-             
-              <form class="form-inline" method="post">
-                
-                <div class="form-group">
-                  <label class="" for="username">Username</label>
-                  <input type="text" class="form-control" id="username" name="username">
-                  <!--<label>_</label>-->
-                </div>
-
-                <div class="form-group">
-                  <label class="" for="Password">Password</label>
-                  <input type="password" class="form-control" id="Password" name="password">
-                 <!-- <label><a href="#">forgot your password</a></label>-->
-                </div>
-
-                <button type="submit" class="btn" name="submit">log in</button><br>
-                  
-              </form>
-
-              <!-- ============= -->
-            </div>
-<?php }
-
-              else { }?>
 
           </div>
           <!-- log in -->

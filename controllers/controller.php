@@ -15,10 +15,15 @@ class Controller {
 	public function index() {
 
 		$tests = $this->model->index();
-		$status = $this->model->register($error);
 		if(!isset($_SESSION['type'])){
 		$logged_in = $this->model->login($error);}
 		require_once 'views/index.php';
+	}
+
+	public function signup() {
+		$status = $this->model->register($error);
+		$logged_in = $this->model->login($error);
+		require_once 'views/signup.php';
 	}
 
 	public function register() {

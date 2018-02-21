@@ -84,6 +84,7 @@ class Member {
 	public function login(&$error) {
 		$username='';
 		$password = '';
+		$status = 'Your Username or Password is incorrect.';
 		//session_start();
 /*if(isset($_SESSION['username'])){
 		$username = $_SESSION['username'];}
@@ -138,6 +139,7 @@ class Member {
 
 		else {
 			$this->logged_in = false;
+			$status = 'Your account is not registered, Please follow the link above to signup';
 			session_destroy();
 		}
 

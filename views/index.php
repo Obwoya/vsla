@@ -28,78 +28,49 @@ else{
                   
                 </div>
         <div class="col-sm-7">
-          <div class="col-sm-10" style="padding-top: 10%;">
-            <h2 class="text-center">Sign Up</h2>
-            <p class="text-center text-muted"><?php if($status != 'fail')echo $status; ?></p><br><br>
+          <div class="col-sm-10" style="padding-top: 18%;">
+            <h2 class="text-center">Login</h2>
+            <!--<p class="text-center text-muted"><?php if($status != 'fail')echo $status; ?></p><br><br>-->
 
-            <form role="form" method="post">
+             <?php
+
+if ($logged_in==false) {
+  # code...
+?>
+
+            <div class="col-md-offset-2 col-md-8">
+              <!-- ================ -->
+             
+              <form role='form' method="post">
                 
-                <div class="col-sm-6 col-xs-6 ">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="First name" name='fname'>
+                  <label class="" for="username">Username</label>
+                  <input type="text" class="form-control" id="username" name="username">
+                  <!--<label>_</label>-->
                 </div>
-                </div>
-                <div class="col-sm-6 col-xs-6">
+
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Last name" name="lname">
+                  <label class="" for="Password">Password</label>
+                  <input type="password" class="form-control" id="Password" name="password">
+                 <!-- <label><a href="#">forgot your password</a></label>-->
                 </div>
-                </div>
-                
-                <div class="col-sm-12 col-xs-12">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Email" name="email">
-                </div></div>
-                <div class="col-sm-6 col-xs-6">
-                <div class="form-group">
-                	<input type="text" class="form-control" placeholder="username" name="username">
-                </div>
-            </div>
 
-                <div class="col-sm-6 col-xs-6">
-                 <div class="form-group">
-                	<input type="text" class="form-control" placeholder="Password" name="password">
-                </div>
-            </div>
-            <div class="row">
+                <button style="float: right;" type="submit" class="btn btn-primary" name="submit">log in</button><br>
+                  
+              </form>
 
-              <div class="col-sm-12 col-xs-12">
-                <div class="form-group">
-                	<span class="text-muted"> ex: kicukiro/kicukiro/kagina</span>
-                  <input type="text" class="form-control" placeholder="Address" name="address">
-                </div></div>
+              <!-- ============= -->
+            
+<?php }
 
-                 <div class="col-sm-6 col-xs-6">
-                <div class="form-group">
-                	<input type="date" class="form-control" name="bdate">
-                </div>
-            </div>
-
-                <div class="col-sm-6 col-xs-6">
-                 <div class="form-group">
-                	<input type="text" class="form-control" placeholder="Telephone" name="phone">
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-xs-6">
-                <label class="radio-inline"><input type="radio" name="gender" value="M">Male</label>
-                <label class="radio-inline"><input type="radio" name="gender" value="F">Female</label>
-            </div>
-
-
-
-                
-
-                <div class="text-right">
-                	<input type="hidden" name="action" value="sub">
-                <input type="submit" class="btn btn-primary" value="Sign Up"></div></div>
-                               </form>
+              else { }?>
 
           </div>
         </div>
         </div>
       
     </section>
-    <div style="padding: 2%;"></div>
+    <div style="padding: 8%;"></div>
 
     <?php }
 require_once('footer.php');

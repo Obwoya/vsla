@@ -118,9 +118,20 @@ public function M_contributions() {
 	public function contribute(&$error) {
 		return $this->tests->contribute($error);
 	}
+	public function ploan(&$error) {
+		return $this->tests->ploan($error);
+	}
 
 	public function R_loan(&$error) {
 		return $this->tests->R_loan($error);
+	}
+
+	public function mloan() {
+		return $this->tests->mloan();
+	}
+
+	public function payed_loans() {
+		return $this->tests->payed_loans();
 	}
 
 

@@ -11,9 +11,9 @@ protected $db_connection;
 	public function __construct() {
 
 		define("host", "localhost");
-define("database", "ikimina");
-define("user", "karenzi");
-define("pass", "karenzi");
+		define("database", "ikimina");
+		define("user", "karenzi");
+		define("pass", "karenzi");
 
 	}
 

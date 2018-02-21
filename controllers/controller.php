@@ -204,6 +204,7 @@ class Controller {
 			$username = $_SESSION['username'];
 		$profile = $this->model->M_profile($username);
 		}
+		$total = $this->model->mloan();
 		$content = "views/Mprofile.php";
 		require_once 'views/member.php';
 	}
@@ -211,6 +212,7 @@ class Controller {
 	public function M_contributions() {
 		$logged_in = $this->model;
 		$tests = $this->model->M_contributions();
+		$total = $this->model->mloan();
 		$content = "views/M_contributions.php";
 		require_once 'views/member.php';
 	}
@@ -218,26 +220,48 @@ class Controller {
 	public function M_loans() {
 		$logged_in = $this->model;
 		$tests = $this->model->M_loans();
+		$total = $this->model->mloan();
 		$content = "views/M_loans.php";
 		require_once 'views/member.php';
 	}
 
+	public function payed_loans() {
+		$logged_in = $this->model;
+		$tests = $this->model->payed_loans();
+		$total = $this->model->mloan();
+		$content = "views/payed_loans.php";
+		require_once 'views/member.php';
+	}
+
+
+
 	public function New_contribution() {
 		$status = $this->model->contribute($error);
 		$logged_in = $this->model;
+		$total = $this->model->mloan();
 		$content = "views/New_contribution.php";
+		require_once 'views/member.php';
+	}
+
+	public function pay_loan() {
+		$total = $this->model->mloan();
+		$status = $this->model->ploan($error);
+		$logged_in = $this->model;
+		$content = "views/pay_loan.php";
 		require_once 'views/member.php';
 	}
 
 	public function Request_loan() {
 		$status = $this->model->R_loan($error);
 		$logged_in = $this->model;
+		$total = $this->model->mloan();
 		$content = "views/Request_loan.php";
 		require_once 'views/member.php';
 	}
 
 
 public function contribute() {
+		$total = $this->model->mloan();
 
 		$status = $this->model->contribute($error);
 		//require_once 'views/'

@@ -1,5 +1,6 @@
 <?php 
 require_once('header.php');
+
 if (!isset($_SESSION['username'])) {
 	# code...
 	
@@ -19,6 +20,11 @@ if (!isset($_SESSION['username'])) {
 							
 							<li><a href="?page=M_contributions">Contributions</a></li>
 							<li><a href="?page=M_loans">Loans</a></li>
+
+
+							<?php 
+				if ($total>0) { ?>
+							<ul style="padding-left: 5px;"><li><a href="?page=pay_loan">Pay Loan</a></li> <a href="?page=payed_loans">Payed Loans</a></li></ul><?php } else {}  ?>
 							<li><a href="?page=logout">Logout</a></li>
 						</ul>
 					  

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 24, 2018 at 04:37 PM
+-- Generation Time: Feb 21, 2018 at 10:01 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `name`, `username`, `password`) VALUES
-(0, 'shyaka tresor', 'st', '123');
+(0, 'administrator', 'admin', '123');
 
 -- --------------------------------------------------------
 
@@ -50,8 +50,18 @@ CREATE TABLE `contribution` (
   `contribution_id` int(10) NOT NULL,
   `member_id` int(10) NOT NULL,
   `amount` int(20) NOT NULL,
-  `cont_date` date NOT NULL
+  `bankslip` varchar(250) NOT NULL,
+  `cont_date` date NOT NULL,
+  `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `contribution`
+--
+
+INSERT INTO `contribution` (`contribution_id`, `member_id`, `amount`, `bankslip`, `cont_date`, `status`) VALUES
+(10, 1, 54, 'fdfa', '0000-00-00', 'Approved'),
+(11, 20, 10000, 'dr32da', '2018-02-21', 'Approved');
 
 -- --------------------------------------------------------
 
@@ -63,9 +73,20 @@ CREATE TABLE `loan` (
   `loan_id` int(10) NOT NULL,
   `staff_id` int(10) NOT NULL,
   `member_id` int(10) NOT NULL,
+  `amount` int(11) NOT NULL,
   `amount_interest` int(20) NOT NULL,
-  `payment_date` date NOT NULL
+  `payment_date` date NOT NULL,
+  `request_date` date NOT NULL,
+  `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loan`
+--
+
+INSERT INTO `loan` (`loan_id`, `staff_id`, `member_id`, `amount`, `amount_interest`, `payment_date`, `request_date`, `status`) VALUES
+(47, 0, 1, 11200, 12, '2018-12-12', '2018-02-21', 'accepted'),
+(48, 0, 20, 22400, 12, '2018-12-12', '2018-02-21', 'waiting');
 
 -- --------------------------------------------------------
 
@@ -92,11 +113,36 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`member_id`, `name`, `bdate`, `username`, `password`, `phone`, `address`, `email`, `gender`, `status`, `type`) VALUES
-(1, 'Nelson', '2000-01-03', 'nelson', '123', 34958354, 'kicukiro', 'nelson@gmail.com', 'M', 'accepted', 'member'),
-(2, 'karenzi', '1993-01-06', 'karenzi', '123', 534552, 'kanombe', 'karenzi@gmail.com', 'M', 'waiting', 'member'),
-(18, 'fasfa fafdaf', '2012-02-04', 'fadsfadsfa', 'fadefasdf', 532523523, 'fdasfsad', 'fasdfa', 'M', 'waiting', 'member'),
-(19, 'eric kalisa', '2012-02-04', 'erika', '123', 2147483647, 'kickiro/kic', 'eric@gmail.com', 'F', 'waiting', 'member'),
-(20, 'david eric', '2012-02-04', 'dav2', '123', 2147483647, 'kigali', 'dev@gmail.com', 'M', 'waiting', 'member');
+(1, 'Nelson', '2000-01-03', 'nelson', '123', 34958354, 'kicukiro', 'nelson@gmail.com', 'M', 'member', 'member'),
+(2, 'karenzi', '1993-01-06', 'karenzi', '123', 534552, 'kanombe', 'karenzi@gmail.com', 'M', 'staff', 'member'),
+(19, 'eric kalisa', '2012-02-04', 'erika', '123', 2147483647, 'kickiro/kic', 'eric@gmail.com', 'F', 'staff', 'member'),
+(20, 'david eric', '2012-02-04', 'dav2', '123', 2147483647, 'kigali', 'dev@gmail.com', 'M', 'member', 'member'),
+(21, 'test one', '0000-00-00', 'tet', '123', 898883434, 'kickafe', 'test@gmail.com', 'M', 'waiting', 'member');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ploan`
+--
+
+CREATE TABLE `ploan` (
+  `loan_id` int(10) NOT NULL,
+  `staff_id` int(10) NOT NULL,
+  `member_id` int(10) NOT NULL,
+  `bankslip` varchar(20) NOT NULL,
+  `amount` int(20) NOT NULL,
+  `rem_amount` int(20) NOT NULL,
+  `payment_date` date NOT NULL,
+  `status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ploan`
+--
+
+INSERT INTO `ploan` (`loan_id`, `staff_id`, `member_id`, `bankslip`, `amount`, `rem_amount`, `payment_date`, `status`) VALUES
+(1, 0, 20, 'faewr', 1000, 21400, '2018-02-21', 'waiting'),
+(2, 0, 1, 'fern', 3000, 8200, '2018-02-21', 'accepted');
 
 --
 -- Indexes for dumped tables
@@ -127,14 +173,35 @@ ALTER TABLE `member`
   ADD PRIMARY KEY (`member_id`);
 
 --
+-- Indexes for table `ploan`
+--
+ALTER TABLE `ploan`
+  ADD PRIMARY KEY (`loan_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `contribution`
+--
+ALTER TABLE `contribution`
+  MODIFY `contribution_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `loan`
+--
+ALTER TABLE `loan`
+  MODIFY `loan_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+--
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `member_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+--
+-- AUTO_INCREMENT for table `ploan`
+--
+ALTER TABLE `ploan`
+  MODIFY `loan_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

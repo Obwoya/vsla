@@ -29,8 +29,8 @@ else{
                 </div>
         <div class="col-sm-7">
           <div class="col-sm-10" style="padding-top: 18%;">
-            <h2 class="text-center">Login</h2>
-            <!--<p class="text-center text-muted"><?php if($status != 'fail')echo $status; ?></p><br><br>-->
+            <h2 class="text-center">Forgot Your Password</h2>
+            <p class="text-center text-muted"><?php if($status != 'fail')echo $status; ?></p><br><br>
 
              <?php
 
@@ -44,18 +44,12 @@ if ($logged_in==false) {
               <form role='form' method="post">
                 
                 <div class="form-group">
-                  <label class="" for="username">Username</label>
-                  <input type="text" class="form-control" id="username" name="username">
+                  <label class="" for="username">Email</label>
+                  <input type="text" class="form-control" id="username" name="email">
                   <!--<label>_</label>-->
                 </div>
 
-                <div class="form-group">
-                  <label class="" for="Password">Password</label>
-                  <input type="password" class="form-control" id="Password" name="password">
-                 <!-- <label><a href="#">forgot your password</a></label>-->
-                </div>
-                <a style="color: grey;" href="?page=forget">Forgot Your Password</a>
-                <button style="float: right;" type="submit" class="btn btn-primary" name="submit">log in</button><br>
+                <button style="float: right;" type="submit" class="btn btn-primary" name="submit">Send</button><br>
                   
               </form>
 

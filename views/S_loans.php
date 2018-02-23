@@ -8,7 +8,7 @@
       <th>Member</th>
       <th>Amount</th>
       <th>Interest</th>
-      <th>Contribution Date</th>
+      <th>Request Date</th>
       <th>Payment Date</th>
       <th>Status</th>
        <?php  if(isset($data) and $data['status']=='waiting') {?> <th>Actions</th><?php } ?>

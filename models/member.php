@@ -1,6 +1,13 @@
 
 <?php 
 require_once('database.php');
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+require_once 'Exception.php';
+require_once 'PHPMailer.php';
+require_once 'SMTP.php';
+
 class Member {
 	
 
@@ -246,9 +253,25 @@ class Member {
 		return $result;
 	}
 
+	public function S_contributionsReport() {
+		$sql = "SELECT contribution.*, member.name FROM contribution inner join member on member.member_id = contribution.member_id where contribution.status = 'Approved'";
+
+		$result = $this->database->execute($sql);
+		return $result;
+
+	}
+
 
 		public function S_loans() {
 		$sql = "SELECT loan.*, member.name FROM loan inner join member on member.member_id = loan.member_id";
+
+		$result = $this->database->execute($sql);
+		return $result;
+
+	}
+
+	public function S_loansReport() {
+		$sql = "SELECT loan.*, member.name FROM loan inner join member on member.member_id = loan.member_id where loan.status = 'accepted'";
 
 		$result = $this->database->execute($sql);
 		return $result;
@@ -260,6 +283,14 @@ class Member {
 		$result = $this->database->execute($sql);
 		return $result;
 	}
+
+
+	public function S_lpaymentReport() {
+		$sql = "SELECT ploan.*, member.name FROM ploan inner join member on member.member_id = ploan.member_id where ploan.status='accepted' or ploan.status='done'";
+		$result = $this->database->execute($sql);
+		return $result;
+	}
+
 	// end of staff actions
 	// 
 	// 
@@ -512,9 +543,19 @@ public function S_Lignore($id) {
 	header('location: ?page=S_loans');
 	}
 
-	public function S_PLaccept($id) {
-		$sql = "UPDATE ploan set status = 'accepted' where loan_id = '$id'";
+	public function S_PLaccept($id,$amount) {
+		if ($amount>0) {
+			# code...
+			$sql = "UPDATE ploan set status = 'accepted' where loan_id = '$id'";
 		$result = $this->database->execute($sql);
+		}
+
+		else if ($amount<=0){
+			$sql = "UPDATE ploan set status = 'done' where loan_id = '$id'";
+		$result = $this->database->execute($sql);
+
+		}
+		
 	header('location: ?page=S_lpayment');
 	}
 public function S_PLignore($id) {
@@ -535,6 +576,147 @@ public function S_Cignore($id) {
 	header('location: ?page=S_contributions');
 	}
 
+
+
+
+// Mailing stuff
+// including Forget password
+// 
+// 
+// 
+
+public function forget(&$error) {
+		$username='';
+		$password = '';
+		$status = 'The Email you entered is not registered.';
+		if (isset($_POST['email'])) {
+			# code...
+			$email = $_POST['email'];
+		
+
+		$sqlM = "SELECT count(*) as total from member where email='$email'";
+
+		$sqlS = "SELECT count(*) as total from member where email='$email'";
+
+		$sqlA = "SELECT count(*) as total from admin where email='$email'";
+
+		$resultM = $this->database->execute($sqlM);
+		$resultS = $this->database->execute($sqlS);
+		$resultA = $this->database->execute($sqlA);
+
+		$totalM = $resultM[0]['total'];
+		$totalS = $resultS[0]['total'];
+		$totalA = $resultA[0]['total'];
+
+
+		if ($totalM==1) {
+			# code...
+			$sql = "SELECT * FROM member where email = '$email'";
+			$result = $this->database->execute($sql);
+			foreach ($result as $id) {
+					$password = $id['password'];	
+					$name = $id['name'];	
+			}
+			$to = $email;
+			$subject = "Forgoten Password";
+			$message = "Your Password is : <h1>". $password ."</h1>";
+
+			$mailsend = $this->sendmail($to,$subject,$message,$name);
+
+			if ($mailsend == 1) {
+				# code...
+				$status = 'Your password has been sent to your email';
+			}
+
+			else {
+				$status =  "There was some issue: ".$mailsend;
+			}
+			//header('location: ?page=Mprofile');
+					}
+
+		else if ($totalS==1) {
+			# code...
+				$sql = "SELECT * FROM staff where email = '$email'";
+			$result = $this->database->execute($sql);
+			foreach ($result as $id) {
+					$password = $id['password'];	
+					$name = $id['name'];	
+			}
+			$to = $email;
+			$subject = "Forgoten Password";
+			$message = "Your Password is : <h1>". $password ."</h1>";
+
+			$mailsend = sendmail($to,$subject,$message,$name);
+
+			if ($mailsend == 1) {
+				# code...
+				$status = 'Your password has been sent to your email ';
+			}
+
+			else {
+				$status = "There was some issue: ".$mailsend;
+			}
+					}
+
+		else if ($totalA==1) {
+			# code...
+				$sql = "SELECT * FROM member where email = '$email'";
+			$result = $this->database->execute($sql);
+			foreach ($result as $id) {
+					$password = $id['password'];	
+					$name = $id['name'];	
+			}
+			$to = $email;
+			$subject = "Forgoten Password";
+			$message = "Your Password is : <h1>". $password ."</h1>";
+
+			$mailsend = sendmail($to,$subject,$message,$name);
+
+			if ($mailsend == 1) {
+				# code...
+				$status = 'Your password has been sent to your email';
+			}
+
+			else {
+				$status = "There was some issue: ".$mailsend;
+			}
+					}
+				}
+
+		else {
+			//$this->logged_in = false;
+			$status = 'Enter Your Email for us to send you the password.';
+			//session_destroy();
+		}
+
+
+		return $status;
+	}
+
+function sendmail($to,$subject,$message,$name)
+    {
+                  $mail             = new PHPMailer();
+                  $body             = $message;
+                  $mail->IsSMTP();
+                  $mail->SMTPAuth   = true;
+                  $mail->Host       = "smtp.gmail.com";
+                  $mail->Port       = 587;
+                  $mail->Username   = "shyakadev@gmail.com";
+                  $mail->Password   = "";
+                  $mail->SMTPSecure = 'tls';
+                  $mail->SetFrom('shyakadev@gmail.com', 'Village Savings and Loan Association');
+                  $mail->AddReplyTo("shyakadev@gmail.com","ST");
+                  $mail->Subject    = $subject;
+                  $mail->AltBody    = "Any message.";
+                  $mail->MsgHTML($body);
+                  $address = $to;
+                  $mail->AddAddress($address, $name);
+                  if(!$mail->Send()) {
+                      return 0;
+                  } else {
+                        return 1;
+                 }
+}
 }
 
 ?>

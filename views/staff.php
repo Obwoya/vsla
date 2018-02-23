@@ -16,13 +16,13 @@ require_once('header.php');
 							<li><a href="?page=Pstaff">Profile</a></li>
 							<li><a href="?page=S_members">Members</a></li>
 							<li><a href="?page=S_loans">Loans</a></li>
-							<ul style="padding-left: 5px;"><li><a href="?page=S_lpayment">Loans Payment</a></li>
-								<li><a href="?page=S_loans">Loans Report</a></li>
-								<li><a href="?page=S_loans">Payed Loans Report</a></li>
+							<ul style="padding-left: 5px;"><li><a href="?page=S_loansReport">Loans Report</a></li>
+<li><a href="?page=S_lpayment">Loans Payment</a></li>
+																<li><a href="?page=S_lpaymentReport">Payed Loans Report</a></li>
 
 							</ul>
 							<li><a href="?page=S_contributions">Contributions</a></li>
-								<ul style="padding-left: 5px;"><li><a href="#">Contributions Report</a></li>
+								<ul style="padding-left: 5px;"><li><a href="?page=S_contributionsReport">Contributions Report</a></li>
 								
 							</ul>
 							<li><a href="?page=logout">Logout</a></li>

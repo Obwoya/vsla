@@ -27,6 +27,10 @@ class Model {
 		return $this->tests->login($error);
 	}
 
+	public function forget(&$error) {
+		return $this->tests->forget($error);
+	}
+
 	public function M_list() {
 		return $this->tests->M_list();
 	}
@@ -77,12 +81,26 @@ class Model {
 		return $this->tests->S_contributions();
 	}
 
+	public function S_contributionsReport() {
+		return $this->tests->S_contributionsReport();
+	}
+
+
 	public function S_loans() {
 		return $this->tests->S_loans();
 	}
 
+	public function S_loansReport() {
+		return $this->tests->S_loansReport();
+	}
+
+
 	public function S_lpayment() {
 		return $this->tests->S_lpayment();
+	}
+
+	public function S_lpaymentReport() {
+		return $this->tests->S_lpaymentReport();
 	}
 
 	public function S_Laccept(&$id) {
@@ -93,8 +111,8 @@ class Model {
 		return $this->tests->S_Lignore($id);
 	}
 
-	public function S_PLaccept(&$id) {
-		return $this->tests->S_PLaccept($id);
+	public function S_PLaccept(&$id,&$amount) {
+		return $this->tests->S_PLaccept($id,$amount);
 	}
 
 	public function S_PLignore(&$id) {

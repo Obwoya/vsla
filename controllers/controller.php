@@ -26,6 +26,12 @@ class Controller {
 		require_once 'views/signup.php';
 	}
 
+	public function forget(){
+		$status = $this->model->forget($error);
+		$logged_in = $this->model->login($error);
+		require_once 'views/forget.php';
+	}
+
 	public function register() {
 		$status = $this->model->register($error);
 		//require_once 'views/'
@@ -146,10 +152,24 @@ class Controller {
 		require_once 'views/staff.php';
 	}
 
+	public function S_contributionsReport() {
+		$logged_in = $this->model;
+		$tests = $this->model->S_contributionsReport();
+		$content = "views/S_contributionsReport.php";
+		require_once 'views/staff.php';
+	}
+
 	public function S_loans() {
 		$logged_in = $this->model;
 		$tests = $this->model->S_loans();
 		$content = "views/S_loans.php";
+		require_once 'views/staff.php';
+	}
+
+	public function S_loansReport() {
+		$logged_in = $this->model;
+		$tests = $this->model->S_loansReport();
+		$content = "views/S_loansReport.php";
 		require_once 'views/staff.php';
 	}
 
@@ -159,6 +179,15 @@ class Controller {
 		$content = "views/S_lpayment.php";
 		require_once 'views/staff.php';
 	}
+
+
+	public function S_lpaymentReport() {
+		$logged_in = $this->model;
+		$tests = $this->model->S_lpaymentReport();
+		$content = "views/S_lpaymentReport.php";
+		require_once 'views/staff.php';
+	}
+
 
 		public function S_Laccept(&$id) {
 		$logged_in = $this->model;
@@ -181,12 +210,13 @@ class Controller {
 	}
 
 
-		public function S_PLaccept(&$id) {
+		public function S_PLaccept(&$id,&$amount) {
 		$logged_in = $this->model;
 		if (isset($_GET['id'])) {
 			# code...
 			$id = $_GET['id'];
-			$action = $this->model->S_PLaccept($id);
+			$amount = $_GET['amount'];
+			$action = $this->model->S_PLaccept($id,$amount);
 		}
 
 	}

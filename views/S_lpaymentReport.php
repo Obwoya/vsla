@@ -1,7 +1,7 @@
 <div> 
   <div class="panel">
     <div class="panel-heading panel-black text-center">
-      <h2> Loans Payment</h2>
+      <h2> Loans Payment Report</h2>
     </div>
   <table class="table table-hover">
     <thead>
@@ -28,7 +28,7 @@
 
         <td><?php echo $data['status'];?></td>
           <td><?php if($data['status']=='waiting' and $_SESSION['type']!='admin'){?>
-          <a href="?page=S_PLaccept&id=<?php echo $data['loan_id'];?>&amount=<?php echo $data['rem_amount']; ?>" class="btn btn-primary">Accept</a><a class="btn btn-danger" href="?page=S_PLignore&id=<?php echo $data['loan_id'];?>">Ignore</a><?php } ?>
+          <a href="?page=S_PLaccept&id=<?php echo $data['loan_id'];?>" class="btn btn-primary">Accept</a><a class="btn btn-danger" href="?page=S_PLignore&id=<?php echo $data['loan_id'];?>">Ignore</a><?php } ?>
               </td>
         
       </tr><?php } ?>

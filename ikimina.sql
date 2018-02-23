@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 21, 2018 at 10:01 PM
+-- Generation Time: Feb 23, 2018 at 02:38 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -30,6 +30,7 @@ CREATE TABLE `admin` (
   `admin_id` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
+  `email` varchar(25) NOT NULL,
   `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -37,8 +38,8 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`admin_id`, `name`, `username`, `password`) VALUES
-(0, 'administrator', 'admin', '123');
+INSERT INTO `admin` (`admin_id`, `name`, `username`, `email`, `password`) VALUES
+(0, 'administrator', 'admin', '', '123');
 
 -- --------------------------------------------------------
 
@@ -141,8 +142,9 @@ CREATE TABLE `ploan` (
 --
 
 INSERT INTO `ploan` (`loan_id`, `staff_id`, `member_id`, `bankslip`, `amount`, `rem_amount`, `payment_date`, `status`) VALUES
-(1, 0, 20, 'faewr', 1000, 21400, '2018-02-21', 'waiting'),
-(2, 0, 1, 'fern', 3000, 8200, '2018-02-21', 'accepted');
+(1, 0, 20, 'faewr', 1000, 21400, '2018-02-21', 'accepted'),
+(2, 0, 1, 'fern', 3000, 8200, '2018-02-21', 'accepted'),
+(3, 0, 20, 'ferwer', 22400, 0, '2018-02-23', 'done');
 
 --
 -- Indexes for dumped tables
@@ -201,7 +203,7 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT for table `ploan`
 --
 ALTER TABLE `ploan`
-  MODIFY `loan_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `loan_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1,7 +1,7 @@
 <div> 
   <div class="panel">
     <div class="panel-heading panel-black text-center">
-      <h2> Members List</h2>
+      <h2> Staff List</h2>
     </div>
   <table class="table table-hover">
     <thead>

@@ -701,11 +701,11 @@ function sendmail($to,$subject,$message,$name)
                   $mail->SMTPAuth   = true;
                   $mail->Host       = "smtp.gmail.com";
                   $mail->Port       = 587;
-                  $mail->Username   = "shyakadev@gmail.com";
-                  $mail->Password   = "";
+                  $mail->Username   = "moses.karenzi1991@gmail.com";
+                  $mail->Password   = "gaperi12";
                   $mail->SMTPSecure = 'tls';
-                  $mail->SetFrom('shyakadev@gmail.com', 'Village Savings and Loan Association');
-                  $mail->AddReplyTo("shyakadev@gmail.com","ST");
+                  $mail->SetFrom('moses.karenzi1991@gmail.com', 'Village Savings and Loan Association');
+                  $mail->AddReplyTo("moses.karenzi1991@gmail.com","KARENZI");
                   $mail->Subject    = $subject;
                   $mail->AltBody    = "Any message.";
                   $mail->MsgHTML($body);

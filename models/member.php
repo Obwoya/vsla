@@ -271,7 +271,7 @@ class Member {
 	}
 
 	public function S_loansReport() {
-		$sql = "SELECT loan.*, member.name FROM loan inner join member on member.member_id = loan.member_id where loan.status = 'accepted'";
+		$sql = "SELECT loan.*, member.name FROM loan inner join member on member.member_id = loan.member_id where loan.status = 'accepted' or loan.status = 'done'";
 
 		$result = $this->database->execute($sql);
 		return $result;
@@ -543,7 +543,7 @@ public function S_Lignore($id) {
 	header('location: ?page=S_loans');
 	}
 
-	public function S_PLaccept($id,$amount) {
+	public function S_PLaccept($id,$amount,$member) {
 		if ($amount>0) {
 			# code...
 			$sql = "UPDATE ploan set status = 'accepted' where loan_id = '$id'";
@@ -552,7 +552,9 @@ public function S_Lignore($id) {
 
 		else if ($amount<=0){
 			$sql = "UPDATE ploan set status = 'done' where loan_id = '$id'";
+			$sql1 = "UPDATE loan set status = 'done' where member_id = '$member'";
 		$result = $this->database->execute($sql);
+		$result1 = $this->database->execute($sql1);
 
 		}
 		

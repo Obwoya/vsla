@@ -111,8 +111,8 @@ class Model {
 		return $this->tests->S_Lignore($id);
 	}
 
-	public function S_PLaccept(&$id,&$amount) {
-		return $this->tests->S_PLaccept($id,$amount);
+	public function S_PLaccept(&$id,&$amount,&$member) {
+		return $this->tests->S_PLaccept($id,$amount,$member);
 	}
 
 	public function S_PLignore(&$id) {

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 23, 2018 at 02:38 PM
+-- Generation Time: Feb 23, 2018 at 03:37 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -81,14 +81,6 @@ CREATE TABLE `loan` (
   `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `loan`
---
-
-INSERT INTO `loan` (`loan_id`, `staff_id`, `member_id`, `amount`, `amount_interest`, `payment_date`, `request_date`, `status`) VALUES
-(47, 0, 1, 11200, 12, '2018-12-12', '2018-02-21', 'accepted'),
-(48, 0, 20, 22400, 12, '2018-12-12', '2018-02-21', 'waiting');
-
 -- --------------------------------------------------------
 
 --
@@ -118,7 +110,8 @@ INSERT INTO `member` (`member_id`, `name`, `bdate`, `username`, `password`, `pho
 (2, 'karenzi', '1993-01-06', 'karenzi', '123', 534552, 'kanombe', 'karenzi@gmail.com', 'M', 'staff', 'member'),
 (19, 'eric kalisa', '2012-02-04', 'erika', '123', 2147483647, 'kickiro/kic', 'eric@gmail.com', 'F', 'staff', 'member'),
 (20, 'david eric', '2012-02-04', 'dav2', '123', 2147483647, 'kigali', 'dev@gmail.com', 'M', 'member', 'member'),
-(21, 'test one', '0000-00-00', 'tet', '123', 898883434, 'kickafe', 'test@gmail.com', 'M', 'waiting', 'member');
+(21, 'test one', '0000-00-00', 'tet', '123', 898883434, 'kickafe', 'test@gmail.com', 'M', 'waiting', 'member'),
+(22, 'test test', '2000-12-12', 'test', '123', 2147483647, 'gasabo', 'moses.karenzi1991@gmail.com', 'M', 'member', 'member');
 
 -- --------------------------------------------------------
 
@@ -136,15 +129,6 @@ CREATE TABLE `ploan` (
   `payment_date` date NOT NULL,
   `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `ploan`
---
-
-INSERT INTO `ploan` (`loan_id`, `staff_id`, `member_id`, `bankslip`, `amount`, `rem_amount`, `payment_date`, `status`) VALUES
-(1, 0, 20, 'faewr', 1000, 21400, '2018-02-21', 'accepted'),
-(2, 0, 1, 'fern', 3000, 8200, '2018-02-21', 'accepted'),
-(3, 0, 20, 'ferwer', 22400, 0, '2018-02-23', 'done');
 
 --
 -- Indexes for dumped tables
@@ -193,17 +177,17 @@ ALTER TABLE `contribution`
 -- AUTO_INCREMENT for table `loan`
 --
 ALTER TABLE `loan`
-  MODIFY `loan_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `loan_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `member_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `ploan`
 --
 ALTER TABLE `ploan`
-  MODIFY `loan_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `loan_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

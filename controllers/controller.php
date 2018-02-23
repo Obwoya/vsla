@@ -210,13 +210,14 @@ class Controller {
 	}
 
 
-		public function S_PLaccept(&$id,&$amount) {
+		public function S_PLaccept(&$id,&$amount,&$member) {
 		$logged_in = $this->model;
 		if (isset($_GET['id'])) {
 			# code...
 			$id = $_GET['id'];
 			$amount = $_GET['amount'];
-			$action = $this->model->S_PLaccept($id,$amount);
+			$member = $_GET['member'];
+			$action = $this->model->S_PLaccept($id,$amount,$member);
 		}
 
 	}

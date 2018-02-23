@@ -32,7 +32,7 @@ else{
             <h2 class="text-center">Sign Up</h2>
             <p class="text-center text-muted"><?php if($status != 'fail')echo $status; ?></p><br><br>
 
-            <form role="form" method="post">
+            <form role="form" method="post" data-toggle='validator'>
                 
                 <div class="col-sm-6 col-xs-6 ">
                 <div class="form-group">
@@ -47,7 +47,8 @@ else{
                 
                 <div class="col-sm-12 col-xs-12">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Email" name="email">
+                  <input type="email" class="form-control" placeholder="Email" name="email">
+                  <div style="padding:0 !important; margin: 0 !important" class="help-block with-errors"></div>
                 </div></div>
                 <div class="col-sm-6 col-xs-6">
                 <div class="form-group">
@@ -64,19 +65,21 @@ else{
 
               <div class="col-sm-12 col-xs-12">
                 <div class="form-group">
-                	<span class="text-muted"> ex: kicukiro/kicukiro/kagina</span>
+                	<span class="text-muted"> ex: Gasabo/Remera/kagina</span>
                   <input type="text" class="form-control" placeholder="Address" name="address">
                 </div></div>
 
                  <div class="col-sm-6 col-xs-6">
                 <div class="form-group">
-                	<input type="date" class="form-control" name="bdate">
+                	<input type="date" class="form-control" name="bdate" max="2000-12-12" min="1930-12-12" required>
                 </div>
             </div>
 
                 <div class="col-sm-6 col-xs-6">
                  <div class="form-group">
-                	<input type="text" class="form-control" placeholder="Telephone" name="phone">
+                	<input type="text" maxlength="10" class="form-control" placeholder="Telephone" name="phone">
+                  <div style="padding:0 !important; margin: 0 !important" class="help-block with-errors"></div>
+
                 </div>
             </div>
 
@@ -100,6 +103,18 @@ else{
       
     </section>
     <div style="padding: 2%;"></div>
+
+    <script src='js/jquery-2.x.min.js'></script>
+<script src='js/bootstrap.min.js'></script>
+<script src='js/validator.js'></script>
+
+<script> var $form = $("form"),
+  $successMsg = $(".alert");
+$form.validator().on("submit", function(e){
+  if(!e.isDefaultPrevented()){
+    $form.submit();
+});
+</script>
 
     <?php }
 require_once('footer.php');

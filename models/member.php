@@ -704,7 +704,7 @@ function sendmail($to,$subject,$message,$name)
                   $mail->Host       = "smtp.gmail.com";
                   $mail->Port       = 587;
                   $mail->Username   = "moses.karenzi1991@gmail.com";
-                  $mail->Password   = "gaperi12";
+                  $mail->Password   = "";
                   $mail->SMTPSecure = 'tls';
                   $mail->SetFrom('moses.karenzi1991@gmail.com', 'Village Savings and Loan Association');
                   $mail->AddReplyTo("moses.karenzi1991@gmail.com","KARENZI");
